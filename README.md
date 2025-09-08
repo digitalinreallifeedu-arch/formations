@@ -1,1 +1,1 @@
-# formations
+# Découvrez nos formations.

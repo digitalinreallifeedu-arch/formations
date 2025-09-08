@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIRL Academy - Transformez vos équipes, Boostez votre performance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --warning: #fbbc04;
+            --danger: #ea4335;
+            --dark: #202124;
+            --gray: #5f6368;
+            --light-gray: #f8f9fa;
+            --border: #dadce0;
+            --shadow: 0 1px 3px rgba(60,64,67,0.3);
+            --shadow-hover: 0 4px 8px rgba(60,64,67,0.3);
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            background: white;
+            line-height: 1.6;
+        }
+
+        /* Sticky Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--gray);
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #1557b0;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .cta-button.secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cta-button.success {
+            background: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(26, 115, 232, 0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-label {
+            color: var(--gray);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            background: white;
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quick-nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .quick-nav-card {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .quick-nav-card:hover {
+            background: white;
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .quick-nav-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .quick-nav-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .quick-nav-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ROI Section */
+        .roi-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .roi-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .roi-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .roi-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .roi-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .roi-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        .roi-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .roi-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .roi-detail {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0.85;
+        }
+
+        /* Main Content Sections */
+        .section {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Formation Cards */
+        .formations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .formation-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .formation-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .formation-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .formation-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--warning);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .formation-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .formation-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .formation-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .formation-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .formation-features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--gray);
+        }
+
+        .formation-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .formation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .formation-duration {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light-gray);
+            padding: 60px 20px;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .author-role {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .author-company {
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        /* Call to Action Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            background: var(--light-gray);
+            padding: 60px 20px;
+        }
+
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .price-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .price-card.featured::before {
+            content: '🏆 PLUS POPULAIRE';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--warning);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .price-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: normal;
+        }
+
+        .price-features {
+            list-style: none;
+            padding: 30px 0;
+            margin: 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-features li {
+            padding: 10px 0;
+            color: var(--gray);
+        }
+
+        .price-features li strong {
+            color: var(--dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-section a {
+            color: #9aa0a6;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .hero-cta { flex-direction: column; }
+            .quick-nav-content { grid-template-columns: 1fr; }
+            .formations-grid { grid-template-columns: 1fr; }
+            .header-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                DIRL <span>Digital In Real Life</span>
+            </a>
+            <nav class="header-nav">
+                <a href="#quick-access" class="nav-link">Formations</a>
+                <a href="#roi" class="nav-link">ROI garanti</a>
+                <a href="#testimonials" class="nav-link">Témoignages</a>
+                <a href="#pricing" class="nav-link">Tarifs</a>
+                <a href="#contact" class="cta-button">Démo gratuite</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vos équipes perdent 2h/jour sur des tâches répétitives ?</h1>
+            <p class="hero-subtitle">
+                Transformez-les en champions du digital avec nos formations Microsoft 365 & Atlassian.
+                <strong>ROI garanti en 3 mois</strong> ou nous continuons la formation gratuitement.
+            </p>
+            <div class="hero-cta">
+                <a href="#quick-access" class="cta-button">
+                    🚀 Découvrir les formations
+                </a>
+                <a href="#roi-calculator" class="cta-button secondary">
+                    💰 Calculer votre ROI
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">2500+</div>
+                    <div class="stat-label">Collaborateurs formés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">-40%</div>
+                    <div class="stat-label">Temps gagné en moyenne</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8/5</div>
+                    <div class="stat-label">Satisfaction client</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3 mois</div>
+                    <div class="stat-label">ROI moyen</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <section id="quick-access" class="quick-nav">
+        <div class="quick-nav-content">
+            <a href="#microsoft-formations" class="quick-nav-card">
+                <div class="quick-nav-icon">📊</div>
+                <div class="quick-nav-title">Microsoft 365</div>
+                <div class="quick-nav-desc">Excel, Teams, Power BI...</div>
+            </a>
+            <a href="#atlassian-formations" class="quick-nav-card">
+                <div class="quick-nav-icon">🚀</div>
+                <div class="quick-nav-title">Atlassian Suite</div>
+                <div class="quick-nav-desc">Jira, Confluence, Loom...</div>
+            </a>
+            <a href="#parcours-metiers" class="quick-nav-card">
+                <div class="quick-nav-icon">🎯</div>
+                <div class="quick-nav-title">Parcours Métiers</div>
+                <div class="quick-nav-desc">Finance, RH, IT, Commercial...</div>
+            </a>
+            <a href="#conseil-audit" class="quick-nav-card">
+                <div class="quick-nav-icon">💡</div>
+                <div class="quick-nav-title">Conseil & Audit</div>
+                <div class="quick-nav-desc">Transformation digitale</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section id="roi" class="roi-section">
+        <h2 class="roi-title">Des résultats concrets et mesurables</h2>
+        <p class="roi-subtitle">
+            Chaque euro investi rapporte en moyenne 3,5€ en gains de productivité
+        </p>
+        <div class="roi-grid">
+            <div class="roi-card">
+                <div class="roi-value">-2h</div>
+                <div class="roi-label">Par jour et par personne</div>
+                <div class="roi-detail">Sur les tâches administratives</div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-value">-90%</div>
+                <div class="roi-label">Erreurs dans les rapports</div>
+                <div class="roi-detail">Grâce aux automatisations</div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-value">x3</div>
+                <div class="roi-label">Vitesse de production</div>
+                <div class="roi-detail">Dashboards et analyses</div>
+            </div>
+            <div class="roi-card">
+                <div class="roi-value">100%</div>
+                <div class="roi-label">Adoption garantie</div>
+                <div class="roi-detail">Accompagnement 3 mois inclus</div>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="#roi-calculator" class="cta-button" style="background: white; color: var(--primary);">
+                💰 Calculer le ROI pour votre entreprise
+            </a>
+        </div>
+    </section>
+
+    <!-- Microsoft Formations -->
+    <section id="microsoft-formations" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Formations Microsoft 365</h2>
+            <p class="section-subtitle">
+                Maîtrisez l'écosystème complet : Excel, Word, PowerPoint, Teams, Power Platform
+            </p>
+        </div>
+
+        <div class="formations-grid">
+            <div class="formation-card">
+                <span class="formation-badge">Best-seller</span>
+                <div class="formation-icon">📊</div>
+                <h3 class="formation-title">Excel - De débutant à Power BI</h3>
+                <p class="formation-description">
+                    LA formation complète pour transformer vos équipes en experts de la donnée.
+                    3 niveaux progressifs + 15 spécialisations métiers.
+                </p>
+                <ul class="formation-features">
+                    <li><strong>Quick Wins</strong> : TCD, RECHERCHEV en 2h</li>
+                    <li><strong>Automatisation</strong> : Macros, Power Query</li>
+                    <li><strong>Dashboards</strong> : Power BI, DAX, KPI temps réel</li>
+                    <li><strong>Sur-mesure</strong> : Vos fichiers, vos données</li>
+                </ul>
+                <div class="formation-footer">
+                    <span class="formation-duration">📅 5 à 30 jours</span>
+                    <a href="#excel-detail" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">👥</div>
+                <h3 class="formation-title">Teams & Collaboration</h3>
+                <p class="formation-description">
+                    Transformez votre culture de travail. Réduisez les emails de 70%, 
+                    supprimez 50% des réunions inutiles.
+                </p>
+                <ul class="formation-features">
+                    <li><strong>Collaboration</strong> : Co-édition temps réel</li>
+                    <li><strong>Communication</strong> : Chat, visio, async</li>
+                    <li><strong>Organisation</strong> : Planner, To Do, OneNote</li>
+                    <li><strong>Automatisation</strong> : Power Automate flows</li>
+                </ul>
+                <div class="formation-footer">
+                    <span class="formation-duration">📅 2 à 5 jours</span>
+                    <a href="#teams-detail" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">⚡</div>
+                <h3 class="formation-title">Power Platform</h3>
+                <p class="formation-description">
+                    Créez vos propres applications métiers sans coder. 
+                    Automatisez 80% de vos processus répétitifs.
+                </p>
+                <ul class="formation-features">
+                    <li><strong>Power BI</strong> : Dashboards interactifs</li>
+                    <li><strong>Power Apps</strong> : Applications mobiles</li>
+                    <li><strong>Power Automate</strong> : Workflows automatisés</li>
+                    <li><strong>Power Virtual Agents</strong> : Chatbots IA</li>
+                </ul>
+                <div class="formation-footer">
+                    <span class="formation-duration">📅 5 à 10 jours</span>
+                    <a href="#power-detail" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#all-microsoft" class="cta-button secondary">
+                Voir toutes les formations Microsoft 365 →
+            </a>
+        </div>
+    </section>
+
+    <!-- Atlassian Formations -->
+    <section id="atlassian-formations" class="section" style="background: var(--light-gray);">
+        <div class="section-header">
+            <h2 class="section-title">Formations Atlassian</h2>
+            <p class="section-subtitle">
+                Devenez une équipe agile haute performance avec Jira, Confluence et Loom
+            </p>
+        </div>
+
+        <div class="formations-grid">
+            <div class="formation-card">
+                <span class="formation-badge">Essentiel</span>
+                <div class="formation-icon">📋</div>
+                <h3 class="formation-title">Jira - Gestion de projet agile</h3>
+                <p class="formation-description">
+                    Livrez vos projets 2x plus vite. De la gestion de tickets 
+                    à l'administration complète, devenez expert Jira.
+                </p>
+                <ul class="formation-features">
+                    <li><strong>Boards</strong> : Scrum, Kanban, hybride</li>
+                    <li><strong>Workflows</strong> : Personnalisation complète</li>
+                    <li><strong>Reporting</strong> : Velocity, burndown, KPI</li>
+                    <li><strong>JSM</strong> : Service desk ITIL</li>
+                </ul>
+                <div class="formation-footer">
+                    <span class="formation-duration">📅 3 à 8 jours</span>
+                    <a href="#jira-detail" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">📚</div>
+                <h3 class="formation-title">Confluence - Knowledge Management</h3>
+                <p class="formation-description">
+                    Créez LA base de connaissances qui fait gagner 30% de temps 
+                    à vos nouveaux arrivants.
+                </p>
+                <ul class="formation-features">
+                    <li><strong>Documentation</strong> : Templates, macros</li>
+                    <li><strong>Collaboration</strong> : Co-édition, commentaires</li>
+                    <li><strong>Organisation</strong> : Espaces, permissions</li>
+                    <li><strong>Intégration</strong> : Jira, Teams, Slack</li>
+                </ul>
+                <div class="formation-footer">
+                    <span class="formation-duration">📅 2 à 4 jours</span>
+                    <a href="#confluence-detail" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">🎥</div>
+                <h3 class="formation-title">Loom - Vidéo asynchrone</h3>
+                <p class="formation-description">
+                    Remplacez 80% de vos réunions par des vidéos. 
+                    Communication 5x plus efficace, zéro perte de temps.
+                </p>
+                <ul class="formation-features">
+                    <li><strong>Enregistrement</strong> : Écran, webcam, audio</li>
+                    <li><strong>Édition</strong> : Trim, annotations, CTA</li>
+                    <li><strong>Analytics</strong> : Qui regarde, engagement</li>
+                    <li><strong>Workflows</strong> : Onboarding, support, vente</li>
+                </ul>
+                <div class="formation-footer">
+                    <span class="formation-duration">📅 1 jour</span>
+                    <a href="#loom-detail" class="cta-button" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Voir le programme
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#all-atlassian" class="cta-button secondary">
+                Voir toutes les formations Atlassian →
+            </a>
+        </div>
+    </section>
+
+    <!-- Parcours Métiers -->
+    <section id="parcours-metiers" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Parcours sur-mesure par métier</h2>
+            <p class="section-subtitle">
+                Formations combinant Microsoft 365 + Atlassian, 100% adaptées à votre fonction
+            </p>
+        </div>
+
+        <div class="formations-grid">
+            <div class="formation-card">
+                <div class="formation-icon">💼</div>
+                <h3 class="formation-title">Finance & Contrôle de gestion</h3>
+                <p class="formation-description">
+                    Clôtures 50% plus rapides, reporting automatisé, zéro erreur.
+                </p>
+                <ul class="formation-features">
+                    <li>Excel expert + Power BI dashboards</li>
+                    <li>Consolidation multi-entités automatisée</li>
+                    <li>Jira pour le suivi des audits</li>
+                    <li>Vos templates métiers inclus</li>
+                </ul>
+                <div class="formation-footer">
+                    <a href="#finance-parcours" class="cta-button success" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Je forme mon équipe finance
+                    </a>
+                </div>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">👥</div>
+                <h3 class="formation-title">RH & Talent Management</h3>
+                <p class="formation-description">
+                    Digitalisez vos process RH, gagnez 1 jour/semaine.
+                </p>
+                <ul class="formation-features">
+                    <li>Excel RH : paie, tableaux de bord sociaux</li>
+                    <li>Teams : onboarding digital, formations</li>
+                    <li>Confluence : base documentaire RH</li>
+                    <li>Power Automate : workflows RH</li>
+                </ul>
+                <div class="formation-footer">
+                    <a href="#rh-parcours" class="cta-button success" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Je forme mon équipe RH
+                    </a>
+                </div>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">💻</div>
+                <h3 class="formation-title">IT & Administration système</h3>
+                <p class="formation-description">
+                    Devenez administrateur certifié Microsoft 365 & Atlassian.
+                </p>
+                <ul class="formation-features">
+                    <li>Admin Microsoft 365 : Azure AD, Exchange</li>
+                    <li>Admin Atlassian : Cloud, Data Center</li>
+                    <li>Sécurité, compliance, gouvernance</li>
+                    <li>Automatisation et scripting</li>
+                </ul>
+                <div class="formation-footer">
+                    <a href="#it-parcours" class="cta-button success" style="padding: 8px 20px; font-size: 0.9rem;">
+                        Je forme mon équipe IT
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 20px;">
+                12 parcours métiers disponibles : Commercial, Marketing, Supply Chain, Production, Support...
+            </p>
+            <a href="#all-parcours" class="cta-button">
+                🎯 Découvrir tous les parcours métiers
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Ils ont transformé leurs équipes avec DIRL</h2>
+            <p class="section-subtitle">
+                Des résultats concrets, mesurables et durables
+            </p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "Nos contrôleurs de gestion ont gagné 1 journée complète par semaine. 
+                    Les clôtures qui prenaient 5 jours se font maintenant en 3. 
+                    ROI atteint en 2 mois, c'était inespéré !"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MD</div>
+                    <div class="author-info">
+                        <div class="author-name">Marie Dubois</div>
+                        <div class="author-role">Directrice Administrative et Financière</div>
+                        <div class="author-company">Groupe industriel • 2000 salariés</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "La formation Jira + Confluence a révolutionné notre gestion de projet. 
+                    95% de nos projets sont maintenant livrés dans les délais vs 60% avant. 
+                    L'équipe DIRL a parfaitement adapté la formation à nos process."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TM</div>
+                    <div class="author-info">
+                        <div class="author-name">Thomas Martin</div>
+                        <div class="author-role">CTO</div>
+                        <div class="author-company">Scale-up Tech • 150 salariés</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "500 collaborateurs formés en 3 mois avec un taux de satisfaction de 98%. 
+                    DIRL a créé notre académie interne avec nos propres cas d'usage. 
+                    Le support post-formation fait toute la différence."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SL</div>
+                    <div class="author-info">
+                        <div class="author-name">Sophie Laurent</div>
+                        <div class="author-role">DRH Groupe</div>
+                        <div class="author-company">Retail • 5000 salariés</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2 class="cta-title">Prêt à booster la productivité de vos équipes ?</h2>
+            <p class="cta-subtitle">
+                Audit gratuit de vos besoins • Démo personnalisée • POC sur vos cas d'usage
+            </p>
+            <div class="cta-buttons">
+                <a href="#demo-form" class="cta-button" style="background: white; color: var(--primary);">
+                    📞 Je réserve ma démo (30 min)
+                </a>
+                <a href="#audit-form" class="cta-button secondary" style="border-color: white; color: white;">
+                    📊 Audit gratuit de maturité digitale
+                </a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                ✅ Sans engagement • ✅ Réponse sous 24h • ✅ ROI calculé en direct
+            </p>
+        </div>
+    </section>
+
+    <!-- Conseil Section -->
+    <section id="conseil-audit" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Au-delà de la formation : le conseil</h2>
+            <p class="section-subtitle">
+                Pour vos projets complexes, nos consultants experts vous accompagnent
+            </p>
+        </div>
+
+        <div class="formations-grid">
+            <div class="formation-card">
+                <div class="formation-icon">🔍</div>
+                <h3 class="formation-title">Audit Digital Express</h3>
+                <p class="formation-description">
+                    2 jours pour identifier vos quick wins et établir votre roadmap
+                </p>
+                <p style="font-size: 1.2rem; color: var(--primary); font-weight: bold; margin-top: 20px;">
+                    3 500€ HT
+                </p>
+                <a href="#audit-detail" class="cta-button" style="margin-top: 20px; display: block; text-align: center;">
+                    En savoir plus
+                </a>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">🚀</div>
+                <h3 class="formation-title">Transformation Complète</h3>
+                <p class="formation-description">
+                    Accompagnement end-to-end : stratégie, déploiement, adoption
+                </p>
+                <p style="font-size: 1.2rem; color: var(--primary); font-weight: bold; margin-top: 20px;">
+                    Sur devis (15-100 jours)
+                </p>
+                <a href="#transformation-detail" class="cta-button" style="margin-top: 20px; display: block; text-align: center;">
+                    Discutons de votre projet
+                </a>
+            </div>
+
+            <div class="formation-card">
+                <div class="formation-icon">🛠️</div>
+                <h3 class="formation-title">Support & Expertise</h3>
+                <p class="formation-description">
+                    Consultants experts à la demande pour vos besoins spécifiques
+                </p>
+                <p style="font-size: 1.2rem; color: var(--primary); font-weight: bold; margin-top: 20px;">
+                    Forfaits 5, 10 ou 20 j/an
+                </p>
+                <a href="#support-detail" class="cta-button" style="margin-top: 20px; display: block; text-align: center;">
+                    Voir les forfaits
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-header">
+            <h2 class="section-title">Investissez dans vos équipes</h2>
+            <p class="section-subtitle">
+                Des formules flexibles adaptées à votre organisation
+            </p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3 class="price-title">Individuel</h3>
+                <div class="price-amount">
+                    490€ <span>HT/personne</span>
+                </div>
+                <ul class="price-features">
+                    <li>✓ <strong>1 formation</strong> au choix</li>
+                    <li>✓ Plateforme e-learning 6 mois</li>
+                    <li>✓ Support par email</li>
+                    <li>✓ Certificat officiel</li>
+                    <li>✓ Ressources téléchargeables</li>
+                </ul>
+                <a href="#individual-form" class="cta-button" style="margin-top: 20px;">
+                    S'inscrire maintenant
+                </a>
+            </div>
+
+            <div class="price-card featured">
+                <h3 class="price-title">Équipe</h3>
+                <div class="price-amount">
+                    390€ <span>HT/pers (5+ pers)</span>
+                </div>
+                <ul class="price-features">
+                    <li>✓ <strong>Toutes les formations</strong></li>
+                    <li>✓ Parcours personnalisés</li>
+                    <li>✓ Sessions dédiées possibles</li>
+                    <li>✓ Support prioritaire</li>
+                    <li>✓ Dashboard manager</li>
+                    <li>✓ <strong>Accompagnement 3 mois</strong></li>
+                </ul>
+                <a href="#team-form" class="cta-button success" style="margin-top: 20px;">
+                    Obtenir un devis
+                </a>
+            </div>
+
+            <div class="price-card">
+                <h3 class="price-title">Entreprise</h3>
+                <div class="price-amount">
+                    Sur mesure
+                </div>
+                <ul class="price-features">
+                    <li>✓ <strong>Académie dédiée</strong></li>
+                    <li>✓ Contenus 100% personnalisés</li>
+                    <li>✓ Consultant dédié</li>
+                    <li>✓ API & intégrations SIRH</li>
+                    <li>✓ SLA et support 24/7</li>
+                    <li>✓ <strong>ROI garanti contractuel</strong></li>
+                </ul>
+                <a href="#enterprise-form" class="cta-button" style="margin-top: 20px;">
+                    Parlons de votre projet
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section id="roi-calculator" class="section" style="background: var(--light-gray);">
+        <div class="section-header">
+            <h2 class="section-title">Calculez votre retour sur investissement</h2>
+            <p class="section-subtitle">
+                Découvrez combien vous pouvez économiser en formant vos équipes
+            </p>
+        </div>
+        
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: var(--shadow);">
+            <form>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+                        Nombre de collaborateurs à former
+                    </label>
+                    <input type="number" value="10" min="1" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+                        Salaire moyen annuel (€)
+                    </label>
+                    <input type="number" value="35000" min="20000" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+                        Temps perdu par jour (heures)
+                    </label>
+                    <input type="range" min="1" max="4" value="2" style="width: 100%;">
+                    <div style="display: flex; justify-content: space-between; color: var(--gray); font-size: 0.9rem;">
+                        <span>1h</span>
+                        <span>2h</span>
+                        <span>3h</span>
+                        <span>4h</span>
+                    </div>
+                </div>
+                
+                <div style="background: var(--light-gray); padding: 20px; border-radius: 8px; margin: 30px 0;">
+                    <h3 style="color: var(--secondary); margin-bottom: 15px;">Votre économie annuelle estimée :</h3>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary);">87 500€</div>
+                    <div style="color: var(--gray); margin-top: 10px;">ROI en moins de 3 mois</div>
+                </div>
+                
+                <button type="submit" class="cta-button success" style="width: 100%;">
+                    📊 Recevoir l'analyse complète par email
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-banner" style="margin-bottom: 0;">
+        <div class="cta-content">
+            <h2 class="cta-title">Ne laissez pas vos concurrents prendre de l'avance</h2>
+            <p class="cta-subtitle">
+                Chaque jour sans formation coûte en moyenne 175€ par collaborateur en perte de productivité
+            </p>
+            <div class="cta-buttons">
+                <a href="tel:+33123456789" class="cta-button" style="background: white; color: var(--primary);">
+                    📞 01 23 45 67 89
+                </a>
+                <a href="#contact-form" class="cta-button secondary" style="border-color: white; color: white;">
+                    📧 Demander un devis
+                </a>
+            </div>
+            <p style="margin-top: 20px;">
+                🏆 Microsoft Gold Partner • 🚀 Atlassian Solution Partner • 📍 Paris - Lyon - Lille
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>DIRL Academy</h4>
+                <p style="color: #9aa0a6; margin-top: 10px;">
+                    Leader de la formation digitale B2B<br>
+                    2500+ professionnels formés<br>
+                    150+ entreprises clientes
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Formations</h4>
+                <a href="#microsoft-formations">Microsoft 365</a>
+                <a href="#atlassian-formations">Atlassian Suite</a>
+                <a href="#parcours-metiers">Parcours métiers</a>
+                <a href="#conseil-audit">Conseil & Audit</a>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <a href="#blog">Blog</a>
+                <a href="#webinars">Webinars gratuits</a>
+                <a href="#guides">Guides pratiques</a>
+                <a href="#certifications">Certifications</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="tel:+33123456789">📞 01 23 45 67 89</a>
+                <a href="mailto:contact@dirl.fr">✉️ contact@dirl.fr</a>
+                <a href="#chat">💬 Chat en ligne</a>
+                <a href="#demo">📅 Réserver une démo</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobile-menu');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (menu && !menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.formation-card, .testimonial-card, .price-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced ROI Calculator
+        function calculateROI() {
+            const employees = parseInt(document.getElementById('employees').value) || 10;
+            const salary = parseInt(document.getElementById('salary').value) || 35000;
+            const hours = parseFloat(document.getElementById('hours').value) || 2;
+            
+            // Update hours display
+            document.getElementById('hours-display').textContent = hours + ' heure' + (hours > 1 ? 's' : '');
+            
+            // Calculate savings
+            const workingDaysPerYear = 220;
+            const workingHoursPerDay = 7;
+            const hourlyRate = salary / (workingDaysPerYear * workingHoursPerDay);
+            const savedPerYear = employees * hourlyRate * hours * workingDaysPerYear;
+            const savedPerMonth = savedPerYear / 12;
+            
+            // Calculate training cost (390€ per person for team pricing)
+            const trainingCost = employees * 390;
+            
+            // Calculate ROI in months
+            const roiMonths = trainingCost / savedPerMonth;
+            
+            // Update display
+            document.getElementById('savings').textContent = new Intl.NumberFormat('fr-FR', { 
+                style: 'currency', 
+                currency: 'EUR',
+                maximumFractionDigits: 0
+            }).format(savedPerYear);
+            
+            document.getElementById('roi-months').textContent = roiMonths.toFixed(1);
+            
+            document.getElementById('training-cost').textContent = new Intl.NumberFormat('fr-FR', { 
+                style: 'currency', 
+                currency: 'EUR',
+                maximumFractionDigits: 0
+            }).format(trainingCost);
+            
+            document.getElementById('monthly-gain').textContent = new Intl.NumberFormat('fr-FR', { 
+                style: 'currency', 
+                currency: 'EUR',
+                maximumFractionDigits: 0
+            }).format(savedPerMonth);
+        }
+
+        // Initialize ROI calculator
+        if (document.getElementById('employees')) {
+            document.getElementById('employees').addEventListener('input', calculateROI);
+            document.getElementById('salary').addEventListener('input', calculateROI);
+            document.getElementById('hours').addEventListener('input', calculateROI);
+            
+            // Calculate initial values
+            calculateROI();
+        }
+
+        // Form submission
+        const roiForm = document.getElementById('roi-form');
+        if (roiForm) {
+            roiForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Merci ! Vous recevrez votre analyse personnalisée dans quelques minutes. Un conseiller vous contactera sous 24h.');
+            });
+        }
+
+        // Add sticky header effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(60,64,67,0.3)';
+            }
+        });
+
+        // Number counter animation
+        function animateValue(element, start, end, duration) {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Animate stats on first view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const value = stat.textContent;
+                        if (value.includes('+')) {
+                            const num = parseInt(value.replace('+', ''));
+                            stat.textContent = '0+';
+                            animateValue(stat, 0, num, 1500);
+                            setTimeout(() => {
+                                stat.textContent = num + '+';
+                            }, 1500);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            statsObserver.observe(heroStats);
+        }
+    </script>
+</body>
+</html>

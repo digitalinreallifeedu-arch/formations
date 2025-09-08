@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Jira - Gestion de Projet Agile | DIRL Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --warning: #fbbc04;
+            --danger: #ea4335;
+            --dark: #202124;
+            --gray: #5f6368;
+            --light-gray: #f8f9fa;
+            --border: #dadce0;
+            --atlassian-blue: #0052CC;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            background: white;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gray);
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--atlassian-blue);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #0747A6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0052CC 0%, #0747A6 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .badge-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .module-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .module-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: var(--atlassian-blue);
+            transform: translateY(-2px);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .module-level {
+            background: var(--atlassian-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .module-duration {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .module-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .module-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .module-topics {
+            list-style: none;
+            padding: 0;
+        }
+
+        .module-topics li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .module-topics li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        .pricing-section {
+            background: var(--light-gray);
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .price-card.featured::before {
+            content: 'RECOMMANDÉ';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--atlassian-blue);
+            color: white;
+            padding: 4px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .price-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price-duration {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--atlassian-blue);
+            margin: 20px 0;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .price-features {
+            list-style: none;
+            padding: 20px 0;
+            margin: 20px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-features li {
+            padding: 10px 0;
+            color: var(--gray);
+        }
+
+        .inscription-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--atlassian-blue);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-button {
+            background: var(--atlassian-blue);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background: #0747A6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-badges { flex-direction: column; }
+            .form-row { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                DIRL <span>Digital In Real Life</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="index.html#atlassian-formations" class="nav-link">Formations Atlassian</a>
+                <a href="contact.html" class="cta-button">S'inscrire</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Formation Jira</h1>
+        <p class="hero-subtitle">
+            Maîtrisez la gestion de projet agile avec l'outil leader du marché
+        </p>
+        <div class="hero-badges">
+            <div class="badge">
+                <div class="badge-value">3-8</div>
+                <div class="badge-label">jours de formation</div>
+            </div>
+            <div class="badge">
+                <div class="badge-value">100%</div>
+                <div class="badge-label">pratique</div>
+            </div>
+            <div class="badge">
+                <div class="badge-value">15+</div>
+                <div class="badge-label">cas d'usage</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Programme -->
+        <section class="section">
+            <h2 class="section-title">Programme de formation</h2>
+            
+            <div class="modules-grid">
+                <!-- Module Utilisateur -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-level">Débutant</span>
+                        <span class="module-duration">1 jour</span>
+                    </div>
+                    <h3 class="module-title">Utilisateur Jira</h3>
+                    <p class="module-description">
+                        Apprenez à utiliser Jira au quotidien pour gérer vos tâches et projets.
+                    </p>
+                    <ul class="module-topics">
+                        <li>Navigation et interface Jira</li>
+                        <li>Création et gestion de tickets</li>
+                        <li>Boards Kanban et Scrum</li>
+                        <li>Filtres et recherches JQL basics</li>
+                        <li>Dashboards personnels</li>
+                        <li>Collaboration et commentaires</li>
+                    </ul>
+                </div>
+
+                <!-- Module Chef de Projet -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-level">Intermédiaire</span>
+                        <span class="module-duration">2 jours</span>
+                    </div>
+                    <h3 class="module-title">Chef de Projet Agile</h3>
+                    <p class="module-description">
+                        Gérez vos équipes et projets agiles avec les fonctionnalités avancées.
+                    </p>
+                    <ul class="module-topics">
+                        <li>Méthodologies Scrum et Kanban</li>
+                        <li>Gestion des sprints et backlog</li>
+                        <li>Estimation et story points</li>
+                        <li>Velocity et burndown charts</li>
+                        <li>Reporting et métriques agiles</li>
+                        <li>Roadmaps et versions</li>
+                    </ul>
+                </div>
+
+                <!-- Module Administrateur -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-level">Avancé</span>
+                        <span class="module-duration">2 jours</span>
+                    </div>
+                    <h3 class="module-title">Administration Jira</h3>
+                    <p class="module-description">
+                        Configurez et administrez Jira pour votre organisation.
+                    </p>
+                    <ul class="module-topics">
+                        <li>Configuration projets et schémas</li>
+                        <li>Workflows personnalisés</li>
+                        <li>Permissions et sécurité</li>
+                        <li>Types de tickets et champs custom</li>
+                        <li>Automatisations et règles</li>
+                        <li>Intégrations et API REST</li>
+                    </ul>
+                </div>
+
+                <!-- Module JSM -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-level">Spécialisation</span>
+                        <span class="module-duration">2 jours</span>
+                    </div>
+                    <h3 class="module-title">Jira Service Management</h3>
+                    <p class="module-description">
+                        Transformez votre support avec JSM et les pratiques ITIL.
+                    </p>
+                    <ul class="module-topics">
+                        <li>Portail client et catalogue services</li>
+                        <li>SLA et gestion des incidents</li>
+                        <li>Files d'attente et priorisation</li>
+                        <li>Base de connaissances Confluence</li>
+                        <li>Automatisation service desk</li>
+                        <li>Reporting ITSM</li>
+                    </ul>
+                </div>
+
+                <!-- Module Intégrations -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-level">Expert</span>
+                        <span class="module-duration">1 jour</span>
+                    </div>
+                    <h3 class="module-title">Intégrations & Ecosystem</h3>
+                    <p class="module-description">
+                        Connectez Jira à votre stack technique et vos outils.
+                    </p>
+                    <ul class="module-topics">
+                        <li>Confluence pour documentation</li>
+                        <li>Bitbucket et GitHub</li>
+                        <li>Slack et Microsoft Teams</li>
+                        <li>API REST et webhooks</li>
+                        <li>Marketplace et apps</li>
+                        <li>ScriptRunner basics</li>
+                    </ul>
+                </div>
+
+                <!-- Module Scaling -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="module-level">Enterprise</span>
+                        <span class="module-duration">2 jours</span>
+                    </div>
+                    <h3 class="module-title">Jira at Scale</h3>
+                    <p class="module-description">
+                        Gérez Jira pour grandes organisations et équipes distribuées.
+                    </p>
+                    <ul class="module-topics">
+                        <li>Advanced Roadmaps (ex-Portfolio)</li>
+                        <li>SAFe et frameworks scaling</li>
+                        <li>Multi-projets et dependencies</li>
+                        <li>Performance et optimisation</li>
+                        <li>Migration Cloud vs Data Center</li>
+                        <li>Gouvernance et best practices</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tarifs -->
+        <section id="pricing" class="pricing-section">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 40px;">
+                Formules de formation
+            </h2>
+
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h3 class="price-title">Utilisateur</h3>
+                    <p class="price-duration">1 jour</p>
+                    <div class="price-amount">490€ <span>HT/pers</span></div>
+                    <ul class="price-features">
+                        <li>Navigation et utilisation</li>
+                        <li>Création de tickets</li>
+                        <li>Boards et filtres</li>
+                        <li>Support 1 mois</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button" style="width: 100%; text-align: center;">
+                        S'inscrire
+                    </a>
+                </div>
+
+                <div class="price-card featured">
+                    <h3 class="price-title">Parcours Complet</h3>
+                    <p class="price-duration">5 jours</p>
+                    <div class="price-amount">1890€ <span>HT/pers</span></div>
+                    <ul class="price-features">
+                        <li>Tous les modules</li>
+                        <li>Certification incluse</li>
+                        <li>Cas pratiques personnalisés</li>
+                        <li>Support 3 mois</li>
+                        <li>Accès plateforme 1 an</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button" style="width: 100%; text-align: center;">
+                        Demander un devis
+                    </a>
+                </div>
+
+                <div class="price-card">
+                    <h3 class="price-title">Sur-mesure</h3>
+                    <p class="price-duration">À définir</p>
+                    <div class="price-amount">Sur devis</div>
+                    <ul class="price-features">
+                        <li>Audit de vos besoins</li>
+                        <li>Contenu personnalisé</li>
+                        <li>Formation sur site</li>
+                        <li>Accompagnement projet</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button" style="width: 100%; text-align: center;">
+                        Nous contacter
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
